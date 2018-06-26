@@ -14,11 +14,15 @@ import android.widget.Toast;
 
 import com.toyapps.kadomian.toyapps.utils.NotificationUtils;
 
+import java.util.HashMap;
+import java.util.Iterator;
+
 public class MainActivity extends AppCompatActivity {
     private static final String ACTION_USB_ATTACHED  = "android.hardware.usb.action.USB_DEVICE_ATTACHED";
     ImageView usbImageView;
-    IntentFilter mChargingIntentFilter;
+    IntentFilter mUSBIntentFilter;
     USBBroadcastReciver usbBroadcastReciver;
+
 
     Toast mToast;
 
@@ -32,9 +36,54 @@ public class MainActivity extends AppCompatActivity {
 
         usbImageView = (ImageView) findViewById(R.id.USBimageView);
 
+        mUSBIntentFilter = new IntentFilter();
+        mUSBIntentFilter.addAction(Intent.ACTION_DOCK_EVENT);
+        mUSBIntentFilter.addAction(Intent.EXTRA_DOCK_STATE);
+
+
+
         usbBroadcastReciver = new USBBroadcastReciver();
 
         //android.hardware.usb.action.USB_DEVICE_ATTACHED
+    }
+
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+
+           UsbDevice usbCamera = null;
+
+            UsbManager usbManager =  (UsbManager) getSystemService(Context.USB_SERVICE);
+
+            HashMap<String, UsbDevice> deviceHashMap = usbManager.getDeviceList();
+
+            Iterator<UsbDevice> deviceIterator = deviceHashMap.values().iterator();
+
+            while (deviceIterator.hasNext()){
+                UsbDevice device = deviceIterator.next();
+                int vid = device.getVendorId();
+                int pid = device.getProductId();
+
+                if (vid == 0x04B0){
+                    usbCamera = device;
+                    showConnected(true);
+                }else {
+                    showConnected(false);
+                }
+            }
+
+
+        // Register the receiver for future state changes
+        registerReceiver(usbBroadcastReciver, mUSBIntentFilter);
+    }
+
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        unregisterReceiver(usbBroadcastReciver);
     }
 
 
