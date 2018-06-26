@@ -61,7 +61,7 @@ public class NotificationUtils {
                 .setLargeIcon(largeIcon(context))
                 .setContentTitle("Camera Attached")
                 .setContentText("New USB Camera Attached")
-                .setStyle(new NotificationCompat.BigTextStyle().bigText("Click to launch the KA Biometric App"))
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(context.getString(R.string.notification_text)))
                 .setDefaults(Notification.DEFAULT_VIBRATE)
                 .setContentIntent(contentIntent(context))
                 .setAutoCancel(true);

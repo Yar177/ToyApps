@@ -8,6 +8,8 @@ import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -30,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
+
 
         Intent intent = new Intent();
         UsbDevice device = (UsbDevice) intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
@@ -52,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
 
-
            UsbDevice usbCamera = null;
 
             UsbManager usbManager =  (UsbManager) getSystemService(Context.USB_SERVICE);
@@ -69,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
                 if (vid == 0x04B0){
                     usbCamera = device;
                     showConnected(true);
+
+                    Log.i("Main", " Camera detected");
+                    NotificationUtils.usbConnectedNotification(this);
                 }else {
                     showConnected(false);
                 }
@@ -88,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void testNotification(View view){
-        //NotificationUtils.usbConnectedNotification(this    );
+
 
         NotificationUtils.usbConnectedNotification(this);
         mToast = Toast.makeText(this, "Cliked", Toast.LENGTH_SHORT);
@@ -105,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
             String action = intent.getAction();
             boolean usbDeviceConnected = (action.equals(Intent.ACTION_DOCK_EVENT));
             showConnected(usbDeviceConnected);
+            //NotificationUtils.usbConnectedNotification(context);
         }
     }
 
