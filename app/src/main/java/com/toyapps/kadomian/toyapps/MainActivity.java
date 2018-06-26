@@ -54,14 +54,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            boolean isCharging = (action.equals(Intent.ACTION_POWER_CONNECTED));
-            showCharging(isCharging);
+            boolean usbDeviceConnected = (action.equals(Intent.ACTION_DOCK_EVENT));
+            showConnected(usbDeviceConnected);
         }
     }
 
-    private void showCharging(boolean isChargin){
+    private void showConnected(boolean isConnected){
 
-        if (isChargin){
+        if (isConnected){
             usbImageView.setImageResource(R.drawable.cam);
         }else {
             usbImageView.setImageResource(R.drawable.usb_xl);
