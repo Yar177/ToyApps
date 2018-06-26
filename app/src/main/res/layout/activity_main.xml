@@ -45,7 +45,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/larg_Camera"
+        app:srcCompat="@drawable/cam"
         android:layout_marginLeft="64dp"
         android:layout_marginRight="63dp" />
 

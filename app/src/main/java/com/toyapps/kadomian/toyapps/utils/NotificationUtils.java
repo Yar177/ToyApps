@@ -39,7 +39,7 @@ public class NotificationUtils {
     }
 
 
-    public static void remindUserBecauseCharging(Context context) {
+    public static void usbConnectedNotification(Context context) {
 
 
         //  (8) Get the NotificationManager using context.getSystemService
@@ -57,7 +57,7 @@ public class NotificationUtils {
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, USB_ATTACHED_NOTIFICATION_CHANNEL_ID)
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
-                .setSmallIcon(R.drawable.small_Camera)
+                .setSmallIcon(R.drawable.sc)
                 .setLargeIcon(largeIcon(context))
                 .setContentTitle("Camera Attached")
                 .setContentText("New USB Camera Attached")
@@ -82,7 +82,7 @@ public class NotificationUtils {
     private static Bitmap largeIcon(Context context) {
 
         Resources res = context.getResources();
-        Bitmap largeIcon = BitmapFactory.decodeResource(res, R.drawable.small_Camera);
+        Bitmap largeIcon = BitmapFactory.decodeResource(res, R.drawable.sc);
         return largeIcon;
     }
 

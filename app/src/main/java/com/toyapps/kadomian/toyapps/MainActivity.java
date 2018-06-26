@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.toyapps.kadomian.toyapps.utils.NotificationUtils;
+
 public class MainActivity extends AppCompatActivity {
     private static final String ACTION_USB_ATTACHED  = "android.hardware.usb.action.USB_DEVICE_ATTACHED";
     ImageView usbImageView;
@@ -37,8 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void testNotification(View view){
-        //NotificationUtils.remindUserBecauseCharging(this    );
+        //NotificationUtils.usbConnectedNotification(this    );
 
+        NotificationUtils.usbConnectedNotification(this);
         mToast = Toast.makeText(this, "Cliked", Toast.LENGTH_SHORT);
         mToast.show();
     }
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     private void showCharging(boolean isChargin){
 
         if (isChargin){
-            usbImageView.setImageResource(R.drawable.larg_Camera);
+            usbImageView.setImageResource(R.drawable.cam);
         }else {
             usbImageView.setImageResource(R.drawable.usb_xl);
         }
