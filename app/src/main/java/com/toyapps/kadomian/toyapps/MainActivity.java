@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     USBBroadcastReciver usbBroadcastReciver;
 
 
+    private static final String ACTION_USB_PERMISSION =  "com.android.example.USB_PERMISSION";
+
     Toast mToast;
 
     @Override
@@ -50,11 +52,19 @@ public class MainActivity extends AppCompatActivity {
         usbBroadcastReciver = new USBBroadcastReciver();
 
         //android.hardware.usb.action.USB_DEVICE_ATTACHED
+
+
+
+
+
+
     }
 
 
     @Override
     protected void onResume(){
+
+
         super.onResume();
 
            UsbDevice usbCamera = null;
@@ -124,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
             usbImageView.setImageResource(R.drawable.usb_xl);
         }
     }
-
 
 
 
