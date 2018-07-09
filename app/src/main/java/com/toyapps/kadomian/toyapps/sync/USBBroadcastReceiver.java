@@ -7,19 +7,14 @@ import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.util.Log;
 
-/**
- * Created by 10190270 on 6/26/2018.
- */
+
 
 public class USBBroadcastReceiver extends BroadcastReceiver {
 
 
     private static final String ACTION_USB_PERMISSION = "com.android.example.USB_PERMISSION";
     private static final String TAG = "USBBroadcastReceiver";
-//    private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver() {
-//
-//
-//    };
+
 
     @Override
     public void onReceive(Context context, Intent intent) {

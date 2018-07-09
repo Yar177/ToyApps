@@ -16,9 +16,7 @@ import android.support.v4.content.ContextCompat;
 import com.toyapps.kadomian.toyapps.MainActivity;
 import com.toyapps.kadomian.toyapps.R;
 
-/**
- * Created by 10190270 on 6/26/2018.
- */
+
 
 public class NotificationUtils {
 
